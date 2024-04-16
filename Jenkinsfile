@@ -13,7 +13,6 @@ pipeline {
       }
     }
     
-    stages {
     stage('CompileandRunSonarAnalysis') {
       steps {
         withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
