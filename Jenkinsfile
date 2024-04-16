@@ -13,11 +13,11 @@ pipeline {
       }
     }
     
-    stage ('SAST') {
+    stages {
+    stage('CompileandRunSonarAnalysis') {
       steps {
-        withSonarQubeEnv('sonar') {
-          sh 'mvn sonar:sonar'
-          sh 'cat target/sonar/report-task.txt'
+        withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
+          bat("mvn -Dmaven.test.failure.ignore verify sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=webapp -Dsonar.host.url=http://localhost:9000/")
         }
       }
     }
