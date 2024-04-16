@@ -16,7 +16,7 @@ pipeline {
     stage('CompileandRunSonarAnalysis') {
       steps {
         withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
-          sh 'mvn -Dmaven.test.failure.ignore sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=webapp -Dsonar.host.url=http://localhost:9000/ -Dsonar.java.jdkHome=/usr/lib/jvm/java-17-openjdk-amd64/'
+          sh 'mvn -Dmaven.test.failure.ignore sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=webapp -Dsonar.host.url=http://localhost:9000/ -Dsonar.java.jdkHome=/usr/lib/jvm/java-17-openjdk-amd64/bin'
         }
       }
     }
